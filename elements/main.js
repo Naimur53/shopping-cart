@@ -27,8 +27,7 @@ function decreasePrice(id ,value,id2,subtotal){
     const phonePrice = document.getElementById(id).innerText;
     const phonePriceNum = parseFloat(phonePrice);
     const result = phonePriceNum - value;
-    document.getElementById(id).innerText = result;
-    
+    document.getElementById(id).innerText = result; 
     const boxPrice = document.getElementById(id2).innerText;
     const boxPriceNum = parseFloat(boxPrice);
     document.getElementById(subtotal).innerText = result + boxPriceNum;
