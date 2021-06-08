@@ -5,10 +5,15 @@ function pressValue(id){
     document.getElementById(id).value = amountNumber;
     return amountNumber;
 } 
-function increasePrice(id,amountNumber,value){
+function increasePrice(id,amountNumber,value,id2,subtotal){
     const phonePrice = document.getElementById(id).innerText;
     let phonePriceNum = parseFloat(phonePrice);
-    document.getElementById(id).innerText = amountNumber * value;
+    phonePriceNum = amountNumber * value;
+    document.getElementById(id).innerText = phonePriceNum;
+
+    const boxPrice = document.getElementById(id2).innerText;
+    const boxPriceNum = parseFloat(boxPrice);
+    document.getElementById(subtotal).innerText = phonePriceNum + boxPriceNum;
 
 } 
 function pressValueMinus(id){
@@ -18,10 +23,15 @@ function pressValueMinus(id){
     document.getElementById(id).value = amountNumber;
    
 }
-function decreasePrice(id ,value){
+function decreasePrice(id ,value,id2,subtotal){
     const phonePrice = document.getElementById(id).innerText;
-    let phonePriceNum = parseFloat(phonePrice);
-    document.getElementById(id).innerText = phonePriceNum - value;
+    const phonePriceNum = parseFloat(phonePrice);
+    const result = phonePriceNum - value;
+    document.getElementById(id).innerText = result;
+    
+    const boxPrice = document.getElementById(id2).innerText;
+    const boxPriceNum = parseFloat(boxPrice);
+    document.getElementById(subtotal).innerText = result + boxPriceNum;
 }
 //do
 document.getElementById("plus-btn").addEventListener("click",function(){ 
@@ -34,23 +44,22 @@ document.getElementById("plus-btn").addEventListener("click",function(){
     // const phonePrice = document.getElementById("iphone-Price").innerText;
     // let phonePriceNum = parseFloat(phonePrice);
     // document.getElementById("iphone-Price").innerText = amountNumber * 1219;
-    increasePrice("iphone-Price",amountNumber,1219);
+    increasePrice("iphone-price",amountNumber,1219,"box-price","subtotal");
 })
 document.getElementById("minus-btn").addEventListener("click",function(){ 
     pressValueMinus("amount");  
-    decreasePrice("iphone-Price",1219);
+    decreasePrice("iphone-price",1219,"box-price","subtotal");
 })
 //second
 document.getElementById("second-minus-btn").addEventListener("click",function(){ 
     pressValueMinus("second-amount");  
-    decreasePrice("box-price",56);
+    decreasePrice("box-price",59,"iphone-price","subtotal");
 })
-document.getElementById("second-plus").addEventListener("click",function(){ 
-    
+document.getElementById("second-plus").addEventListener("click",function(){  
    const amountNumber = pressValue("second-amount");
     // increase price 
     // const phonePrice = document.getElementById("iphone-Price").innerText;
     // let phonePriceNum = parseFloat(phonePrice);
     // document.getElementById("iphone-Price").innerText = amountNumber * 1219;
-    increasePrice("box-price",amountNumber,56);
+    increasePrice("box-price",amountNumber,59,"iphone-price","subtotal");
 })
